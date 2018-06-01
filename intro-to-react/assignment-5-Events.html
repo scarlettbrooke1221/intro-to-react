@@ -16,19 +16,32 @@
        class Greeting extends React.Component {
 	   constructor(props) {
 	   super(props);
-
 	   this.state = {
-	   weddingDate:'Please enter wedding date here.'
-	   }
-	   }
+	   number: 1
 	   
-         render() {
+	   }
+	   }
+	    increment(event) {
+          this.setState({
+            number: this.state.number + 1
+          })
+        }
+ 
+        decrement(event) {
+          this.setState({
+            number: Math.max(1, this.state.number - 1)
+          })
+        }
+
+        render() {
            return (
              <div>
                <h1>Hello Bride!</h1>
-			   <h2> Today's date: {this.props.date.toLocaleDateString()} </h2>
-			   <h2> When is your wedding? {this.state.weddingDate}</h2>
-             </div>
+			   <h3> Today's date: {this.props.date.toLocaleDateString()} </h3>
+			   <h2> How many days until your wedding? {this.state.number}</h2>
+			   <button onClick={this.increment.bind(this)}>Add a day</button>
+               <button onClick={this.decrement.bind(this)}>Remove a day</button>
+			 </div>
            );
          }
        }
